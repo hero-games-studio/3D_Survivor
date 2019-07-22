@@ -22,13 +22,15 @@ public class BoatController : MonoBehaviour
     [SerializeField]
     private Rigidbody boatRigidBody;
 
-
+    private float firstPosX, secondPosX;
+    private float clampedFirstPosX,clampedSecondPosX;
+    private Vector3 directionX;
 
     
     private LineRenderer line;
     public Material material;
  
-    void FixedUpdate() {
+    void Update() {
         SetMaxPosition(transform.position);
         GetDirection();
         SetDirection();
@@ -51,11 +53,18 @@ public class BoatController : MonoBehaviour
                 {
                     firstPos = hit.point;
                     clampedFirstPos = hit.transform.InverseTransformPoint(firstPos);
-                    
+
                     secondPos = hit.point;
 
                     line.SetPosition(0, firstPos);
                     line.SetPosition(1, secondPos);
+
+
+
+                    firstPosX = hit.point.x;
+                    clampedFirstPosX = hit.transform.InverseTransformPoint(firstPos).x;
+                    
+                    secondPosX = hit.point.x;
 
                     firstTouch = true;
                 }
@@ -68,8 +77,9 @@ public class BoatController : MonoBehaviour
                 
                 if (Physics.Raycast(ray2, out hit2) && firstTouch == true)
                 {
-                    secondPos = hit2.point;
+                    /* secondPos = hit2.point;
                     clampedSecondPos = hit2.transform.InverseTransformPoint(secondPos);
+
                     Vector3 offset;
                     offset = clampedSecondPos - clampedFirstPos;
                     direction = Vector3.ClampMagnitude(offset,3.0f);
@@ -82,7 +92,24 @@ public class BoatController : MonoBehaviour
                     {
                         direction.y = 0;
                     }
+                    line.SetPosition(1, secondPos); */
+
+
+                    secondPosX = hit2.point.x;
+                    clampedSecondPosX = Mathf.Clamp(secondPosX,-1.5f,1.5f);
+
+                    float offsetX;
+                    offsetX = clampedSecondPosX - clampedFirstPosX;
+                    directionX = Vector3.ClampMagnitude(new Vector3(offsetX,0,0),3.0f);
+
+                    direction += directionX;
+                    if (direction.y <= 0)
+                    {
+                        direction.y = 0;
+                    }
                     line.SetPosition(1, secondPos);
+
+
                 }
             }
             if(newTouch.phase == TouchPhase.Stationary){
@@ -92,7 +119,7 @@ public class BoatController : MonoBehaviour
                 
                 if (Physics.Raycast(ray2, out hit2) && firstTouch == true)
                 {
-                    secondPos = hit2.point;
+                    /* secondPos = hit2.point;
                     clampedSecondPos = hit2.transform.InverseTransformPoint(secondPos);
                     Vector3 offset;
                     offset = clampedSecondPos - clampedFirstPos;
@@ -107,9 +134,23 @@ public class BoatController : MonoBehaviour
                         direction.y = 0;
                     }
                     line.SetPosition(0, firstPos);
+                    line.SetPosition(1, secondPos); */
+
+                    secondPosX = hit2.point.x;
+                    clampedSecondPosX = Mathf.Clamp(secondPosX,-1.5f,1.5f);
+
+                    float offsetX;
+                    offsetX = clampedSecondPosX - clampedFirstPosX;
+                    directionX = Vector3.ClampMagnitude(new Vector3(offsetX,0,0),3.0f);
+
+                    direction += directionX;
+                    if (direction.y <= 0)
+                    {
+                        direction.y = 0;
+                    }
                     line.SetPosition(1, secondPos);
+
                 }
-                CheckSidePosition();
             }
             if (newTouch.phase == TouchPhase.Ended)
             {
@@ -137,21 +178,22 @@ public class BoatController : MonoBehaviour
 
     }
 
-    void CheckSidePosition(){
-        print("Direction X: " +  direction.x + " | Position X: " + transform.position.x);
-        if((direction.x > 0 && transform.position.x >= clampValue) || (direction.x < 0 && transform.position.x <= -clampValue))
-        {
-            direction.x = 0;
-            firstPos.x = transform.position.x;
-            firstPos.z = transform.position.z - 20;
-        }
-    }
     void SetDirection(){
 
         //direction.z = direction.y;
         direction.x = direction.x/2;
         direction.z = Mathf.Clamp(direction.z,0.75f,1.5f);
-        
+        //print("Direction X: " +  directionX + " | Position X: " + transform.position.x);
+        if((direction.x > 0 && transform.position.x >= clampValue) || (direction.x < 0 && transform.position.x <= -clampValue))
+        {
+            /* direction.x = 0;
+            firstPos.x = transform.position.x;
+            firstPos.z = transform.position.z - 20; */
+
+            direction.x = 0;
+            directionX.x = 0;
+            firstPosX = 0;
+        }
 
         if (direction.x < 0.5f && direction.x > -0.5f)
         {
