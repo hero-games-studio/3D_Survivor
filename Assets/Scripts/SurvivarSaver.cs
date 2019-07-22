@@ -15,7 +15,6 @@ public class SurvivarSaver : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.transform.parent.gameObject.tag == "survivor"){
-            print(savedSurvivors);
             other.transform.parent.transform.SetParent(ringPivot.transform);
             other.transform.parent.transform.localPosition = new Vector3(0,0,0);
             other.transform.parent.transform.localEulerAngles = new Vector3(90 - savedSurvivors*60,90,90);

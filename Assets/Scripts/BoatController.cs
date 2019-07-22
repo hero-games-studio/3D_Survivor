@@ -26,6 +26,12 @@ public class BoatController : MonoBehaviour
     private float clampedFirstPosX,clampedSecondPosX;
     private Vector3 directionX;
 
+    private int currentMagnetude = 0;
+    private float lastMagnetude = -1;
+    private bool timerStarted = false;
+    [SerializeField]
+    private GameObject dropPrefab;
+
     
     private LineRenderer line;
     public Material material;
@@ -34,6 +40,7 @@ public class BoatController : MonoBehaviour
         SetMaxPosition(transform.position);
         GetDirection();
         SetDirection();
+        IsBoatMoving();
     }
 
     void GetDirection()
@@ -213,6 +220,28 @@ public class BoatController : MonoBehaviour
         boatRigidBody.angularVelocity = Vector3.zero;
 
 
+    }
+
+    void IsBoatMoving(){
+        currentMagnetude = Mathf.RoundToInt(transform.position.magnitude);
+        print("Current Magnetude: " +currentMagnetude + "| Last Magnetude: " + lastMagnetude );
+        int tempMagnetude = Mathf.RoundToInt(lastMagnetude);
+        if(currentMagnetude > lastMagnetude && !timerStarted){
+            lastMagnetude = Mathf.MoveTowards(lastMagnetude,currentMagnetude,0.2f);
+            StopCoroutine(Timer());
+        }
+        if(lastMagnetude == currentMagnetude && !timerStarted){
+            timerStarted = true;
+            StartCoroutine(Timer());
+        }
+    }
+
+    IEnumerator Timer(){
+        print("Timer Started");
+        yield return new WaitForSeconds(1);
+        Vector3 offset = transform.position + new Vector3(0,10,0);
+        GameObject whale = Instantiate(dropPrefab,offset,Quaternion.identity) as GameObject;
+        whale.transform.localEulerAngles = new Vector3(-90,0,90);
     }
 
 
