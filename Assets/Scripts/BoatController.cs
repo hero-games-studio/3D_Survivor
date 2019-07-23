@@ -151,6 +151,7 @@ public class BoatController : MonoBehaviour
                     float offsetX;
                     offsetX = clampedSecondPosX - clampedFirstPosX;
                     directionX = Vector3.ClampMagnitude(new Vector3(offsetX,0,0),3.0f);
+                    
 
                     direction += directionX;
                     if (direction.y <= 0)
@@ -158,6 +159,8 @@ public class BoatController : MonoBehaviour
                         direction.y = 0;
                     }
                     line.SetPosition(1, secondPos);
+
+                    Mathf.MoveTowards(clampedFirstPosX,0,0.1f);
 
                 }
             }
@@ -192,7 +195,6 @@ public class BoatController : MonoBehaviour
         //direction.z = direction.y;
         direction.x = direction.x/2;
         direction.z = Mathf.Clamp(direction.z,0.75f,1.5f);
-        //print("Direction X: " +  directionX + " | Position X: " + transform.position.x);
         if((direction.x > 0 && transform.position.x >= clampValue) || (direction.x < 0 && transform.position.x <= -clampValue))
         {
             /* direction.x = 0;
