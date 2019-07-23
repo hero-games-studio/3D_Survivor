@@ -31,6 +31,8 @@ public class BoatController : MonoBehaviour
     private bool timerStarted = false;
     [SerializeField]
     private GameObject dropPrefab;
+    [SerializeField]
+    private GameObject whalePrefab;
 
     
     private LineRenderer line;
@@ -240,8 +242,9 @@ public class BoatController : MonoBehaviour
         print("Timer Started");
         yield return new WaitForSeconds(1);
         Vector3 offset = transform.position + new Vector3(0,10,0);
-        GameObject whale = Instantiate(dropPrefab,offset,Quaternion.identity) as GameObject;
-        whale.transform.localEulerAngles = new Vector3(-90,0,90);
+        whalePrefab.SetActive(true);
+        whalePrefab.transform.position = offset;
+        whalePrefab.transform.localEulerAngles = new Vector3(-100,-90,0);
     }
 
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3207404830912621651}
   - component: {fileID: 6294300901987429951}
   - component: {fileID: 6328493610236479859}
+  - component: {fileID: 5814828365081181276}
   m_Layer: 0
   m_Name: 11099_bluewhale_v2
   m_TagString: Untagged
@@ -62,6 +63,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.19, y: 7.98, z: 3.78}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5814828365081181276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934758297940647488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf4b30b6b870da479c247a8766e19fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5827882910399243949
 GameObject:
   m_ObjectHideFlags: 0
