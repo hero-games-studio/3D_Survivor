@@ -12,9 +12,11 @@ public class SeaPort : MonoBehaviour
     private BoatController boatController;
     [SerializeField]
     UIManager uiManager;
+    StageManager stageManager;
 
     void Awake() {
-        uiManager = UIManager.Instance;    
+        uiManager = UIManager.Instance;  
+        stageManager = StageManager.Instance;  
     }
 
     void Start(){
@@ -29,6 +31,9 @@ public class SeaPort : MonoBehaviour
             boatRigidbody.angularDrag = 5f;
             uiManager.SetInGamePanelActive(false);
             uiManager.SetTapToText("Tap to Continue");
+            stageManager.SetGameStarted(false);
+            stageManager.SetGameFailed(false);
+            stageManager.SetGameFinished(true);
         }
     }
 }

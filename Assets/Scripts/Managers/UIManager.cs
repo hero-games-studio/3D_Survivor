@@ -39,6 +39,10 @@ public class UIManager : MonoSingleton<UIManager>
         StartCoroutine("SetProgressBar");
     }
 
+    public void ChangeLevelText(){
+        StartCoroutine(SetProgressBar());
+    }
+
     public void SetOverLevelText(string text)
     {
         OverLevelText.text = text;
@@ -52,6 +56,9 @@ public class UIManager : MonoSingleton<UIManager>
     public void SetInGamePanelActive(bool value)
     {
         InGamePanel.SetActive(value);
+        if(value){
+            StartCoroutine(SetProgressBar());
+        }
         EndGamePanel.SetActive(!value);
     }
 

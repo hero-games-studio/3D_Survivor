@@ -17,11 +17,16 @@ public class StageManager : MonoSingleton<StageManager>
     Vector3 tileStep = new Vector3(0,0,25);
     [SerializeField]
     BoatController boatController;
-
-    bool firstTap = true;
-    bool resetTap = false;
     [SerializeField]
-    GameObject boatObject, ringObject, cameraObject;
+    bool gameStarted = true;
+    [SerializeField]
+    bool gameFailed = false;
+    [SerializeField]
+    bool gameFinished = false;
+
+
+    [SerializeField]
+    GameObject boatObject, hookObject, ropeObject, cameraObject, whaleObject;
 
     #endregion
     #region Functions
@@ -33,16 +38,22 @@ public class StageManager : MonoSingleton<StageManager>
         uiManager = UIManager.Instance;
     }
 
-    void Start(){
+    void Start()
+    {
+        SetGameStarted(true);
+        SetGameFailed(false);
+        SetGameFinished(false);
         CreatePath();
         uiManager.SetInGamePanelActive(false);
         uiManager.SetTapToText("Tap to Start");
         uiManager.SetOverLevelText("");
     }
-    void Update(){
-        if(Input.GetMouseButtonDown(0) && firstTap){
+    void Update()
+    {
+        if(Input.GetMouseButtonDown(0) && gameStarted){
             boatController.enabled = true;
-            firstTap = false;
+            boatController.SetKinematic(false);
+            gameStarted = false;
             uiManager.SetInGamePanelActive(true);
             uiManager.SetTapToText("");
         }
@@ -51,8 +62,6 @@ public class StageManager : MonoSingleton<StageManager>
     {
         currentLevel++;
         PlayerPrefs.SetInt("Level", currentLevel);
-
-        RestartLevel();
     }
 
     public void LevelDown()
@@ -68,19 +77,58 @@ public class StageManager : MonoSingleton<StageManager>
 
     public void RestartLevel()
     {
-        objectPoolManager.closeObjects();
-        //Call Reset Function From Player
+        if(gameStarted)
+        {
+            boatController.enabled = true;
+            print("asf");
+            boatController.SetKinematic(false);
+            uiManager.SetInGamePanelActive(true);
+            uiManager.SetTapToText("Tap to Start");
+            gameStarted = false;
+        }else if(gameFailed)
+        {
+            objectPoolManager.closeObjects();
+            ResetPosition();
+            tileOffset = tileStep;
+            Survivor.isFinished = true;
+            uiManager.SetOverLevelText("");
+            uiManager.SetTapToText("Tap to Restart");
+            SetGameStarted(true);
+            whaleObject.SetActive(false);
+            boatController.RestartTimer();
+            CreatePath();
+        }else if(gameFinished){
+            LevelUp();
+            objectPoolManager.closeObjects();
+            ResetPosition();
+            tileOffset = tileStep;
+            Survivor.isFinished = true;
+            uiManager.SetOverLevelText("");
+            uiManager.SetTapToText("Tap to Start");
+            SetGameStarted(true);
+            whaleObject.SetActive(false);
+            boatController.RestartTimer();
+            CreatePath();
+        }
+        
+    }
+    void ResetPosition(){
+        boatController.SetGravity(false);
+        boatController.SetKinematic(true);
+        boatController.ResetConstraints();
         boatObject.transform.position = Vector3.zero;
-        ringObject.transform.position = Vector3.zero;
+        boatObject.transform.forward = Vector3.zero;
+        hookObject.transform.position = Vector3.zero;
+        hookObject.transform.eulerAngles = Vector3.zero;
+        hookObject.transform.SetParent(boatObject.transform);
+        ropeObject.SetActive(false);
+        ropeObject.transform.position = Vector3.zero;
+        ropeObject.SetActive(true);
         cameraObject.transform.position = Vector3.zero;
-        tileOffset = tileStep;
-        Survivor.isFinished = true;
-        CreatePath();
     }
 
     private void CreatePath()
     {
-        //Create the Path with Object Pool Manager
         int tileCount = currentLevel * 5;
         for (int i = 0; i < tileCount; i++)
         {
@@ -90,7 +138,7 @@ public class StageManager : MonoSingleton<StageManager>
         }
         objectPoolManager.SpawnEndObject(tileOffset);
         uiManager.SetFinishPosition(tileOffset.z);
-        resetTap = false;
+        gameFailed = false;
     }
 
     private void LevelControl()
@@ -107,12 +155,26 @@ public class StageManager : MonoSingleton<StageManager>
     #region Get Functions
 
     public int GetLevel() { return currentLevel; }
+    public bool GetGameStarted(){ return gameStarted; }
+    public bool GetGameFailed(){ return gameFailed; }
+    public bool GetGameFinished(){ return gameFinished; }
 
     #endregion
 
     #region Set Functions
 
     public void SetLevel(int level) { this.currentLevel = level; }
+
+    public void SetGameStarted(bool gameStarted){
+        this.gameStarted = gameStarted;
+    }
+    
+    public void SetGameFailed(bool gameFailed){
+        this.gameFailed = gameFailed;
+    }
+    public void SetGameFinished(bool gameFinished){
+        this.gameFinished = gameFinished;
+    }
 
     #endregion
 

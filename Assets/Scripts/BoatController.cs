@@ -9,29 +9,21 @@ public class BoatController : MonoBehaviour
     [SerializeField]
     private float clampValue = 4.0f;
     [SerializeField]
-    private bool firstTouch = false;
-    [SerializeField]
-    private Camera mainCamera;
-    [SerializeField]
     private Rigidbody boatRigidBody;
 
-    private int currentMagnetude = 0;
-    private float lastMagnetude = -1;
     private bool timerStarted = false;
     [SerializeField]
     private GameObject whalePrefab;
+    private int velocityZ;
 
 
 
     private Vector3 targetPosition;
     [SerializeField]
     private Vector3 targetOffset = new Vector3(0,0,4);
-    [SerializeField]
-    private Vector3 nutralTargetOffset = new Vector3(0,0,4);
-    private Vector3 touchPosition;
-    private float touchPositionX;
     private Vector3 newDirection;
     UIManager uiManager;
+
  
     void Awake(){
         uiManager = UIManager.Instance;
@@ -40,8 +32,10 @@ public class BoatController : MonoBehaviour
         uiManager.SetCurrentPosition(transform.position.z);
         SetMaxPosition(transform.position);
         GetDirection();
-        SetDirection();
         IsBoatMoving();
+    }
+    void FixedUpdate() {
+        SetDirection();
     }
 
     void GetDirection()
@@ -70,28 +64,41 @@ public class BoatController : MonoBehaviour
     void SetDirection()
     {
         transform.forward = Vector3.Lerp(transform.forward, newDirection, rotationSpeed);
-
+        
         boatRigidBody.velocity = transform.forward * speed;
         boatRigidBody.angularVelocity = Vector3.zero;
     }
 
+    public void SetKinematic(bool isKinematic){
+        boatRigidBody.isKinematic = isKinematic;
+    }
+    public void SetGravity(bool useGravity){
+        boatRigidBody.useGravity = useGravity;
+    }
+    public void ResetConstraints(){
+        boatRigidBody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+    }
+
+
     void IsBoatMoving(){
-        currentMagnetude = Mathf.RoundToInt(transform.position.magnitude);
-        //print("Current Magnetude: " +currentMagnetude + "| Last Magnetude: " + lastMagnetude );
-        int tempMagnetude = Mathf.RoundToInt(lastMagnetude);
-        if(currentMagnetude > lastMagnetude && !timerStarted){
-            lastMagnetude = Mathf.MoveTowards(lastMagnetude,currentMagnetude,0.2f);
-            StopCoroutine(Timer());
-        }
-        if(lastMagnetude == currentMagnetude && !timerStarted){
+        velocityZ = Mathf.RoundToInt(boatRigidBody.velocity.z);
+        print(velocityZ);
+        if(velocityZ < 7 && !timerStarted){
             timerStarted = true;
             StartCoroutine(Timer());
+        }else if(velocityZ > 7 && timerStarted){
+            StopCoroutine(Timer());
         }
+
+    }
+    public void RestartTimer(){
+        timerStarted = false;
+        StopCoroutine(Timer());
     }
 
     IEnumerator Timer(){
         print("Timer Started");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         Vector3 offset = transform.position + new Vector3(0,10,0);
         whalePrefab.SetActive(true);
         whalePrefab.transform.position = offset;

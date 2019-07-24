@@ -211,7 +211,7 @@ PrefabInstance:
         type: 3}
       propertyPath: hook
       value: 
-      objectReference: {fileID: 1446952441}
+      objectReference: {fileID: 205363182}
     - target: {fileID: 5814828365081181276, guid: 4c82cfde86da34d46939ab2a85801140,
         type: 3}
       propertyPath: boatRigidbody
@@ -737,6 +737,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 614749995}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &205363182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 205363183}
+  m_Layer: 12
+  m_Name: HookObj
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &205363183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205363182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1446952442}
+  m_Father: {fileID: 576283577}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &253071705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1679,7 +1710,7 @@ Transform:
   m_Children:
   - {fileID: 1931110779}
   - {fileID: 68215400}
-  - {fileID: 1446952442}
+  - {fileID: 205363183}
   - {fileID: 19440101}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1704,7 +1735,6 @@ MonoBehaviour:
   boatRigidBody: {fileID: 576283579}
   whalePrefab: {fileID: 2071542561}
   targetOffset: {x: 0, y: 0, z: 7}
-  nutralTargetOffset: {x: 0, y: 0, z: 7}
 --- !u!54 &576283579
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2995,9 +3025,14 @@ MonoBehaviour:
   currentLevel: 0
   tileStep: {x: 0, y: 0, z: 25}
   boatController: {fileID: 576283578}
+  gameStarted: 1
+  gameFailed: 0
+  gameFinished: 0
   boatObject: {fileID: 576283573}
-  ringObject: {fileID: 1638619981}
+  hookObject: {fileID: 205363182}
+  ropeObject: {fileID: 1638619981}
   cameraObject: {fileID: 1554177694}
+  whaleObject: {fileID: 2071542561}
 --- !u!4 &862542204 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 411836, guid: b7a5c51d805970e40af12625f2d90a91,
@@ -4762,12 +4797,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1446952441}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.036, z: -1.678}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 576283577}
-  m_RootOrder: 2
+  m_Father: {fileID: 205363183}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1446952443
 Rigidbody:
@@ -4819,10 +4854,10 @@ HingeJoint:
     targetVelocity: 0
     force: 0
     freeSpin: 0
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_Limits:
-    min: 140
-    max: 220
+    min: -40
+    max: 40
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -5981,7 +6016,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 577c2b93260169a498fc94cf0fd68656, type: 2}
+  - {fileID: 2100000, guid: 2d2cee0fb21dd50489fae461eb928995, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

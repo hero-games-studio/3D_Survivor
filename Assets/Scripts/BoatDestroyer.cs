@@ -12,14 +12,27 @@ public class BoatDestroyer : MonoBehaviour
     private Rigidbody boatRigidbody;
     [SerializeField]
     private BoatController boatController;
+    StageManager stageManager;
+    UIManager uiManager;
+
+    void Awake() {
+        stageManager = StageManager.Instance;
+        uiManager = UIManager.Instance;
+    }
     
     void OnCollisionEnter(Collision other) {
-        print(other.gameObject);
         if(other.gameObject == boat){
             boatController.enabled = false;
             hook.transform.SetParent(null);
             boatRigidbody.useGravity = true;
             boatRigidbody.constraints = RigidbodyConstraints.None;
+            stageManager.SetGameStarted(false);
+            stageManager.SetGameFailed(true);
+            stageManager.SetGameFinished(false);
+            uiManager.SetInGamePanelActive(false);
+            uiManager.SetOverLevelText("You Failed");
+            uiManager.SetTapToText("Tap to Restart");
+            boatController.RestartTimer();
         }
     }
 }
