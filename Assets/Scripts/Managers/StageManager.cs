@@ -18,6 +18,8 @@ public class StageManager : MonoSingleton<StageManager>
     [SerializeField]
     BoatController boatController;
     [SerializeField]
+    SurvivarSaver survivarSaver;
+    [SerializeField]
     bool gameStarted = true;
     [SerializeField]
     bool gameFailed = false;
@@ -79,6 +81,7 @@ public class StageManager : MonoSingleton<StageManager>
     {
         if(gameStarted)
         {
+            survivarSaver.ResetCount();
             boatController.enabled = true;
             print("asf");
             boatController.SetKinematic(false);
@@ -87,6 +90,7 @@ public class StageManager : MonoSingleton<StageManager>
             gameStarted = false;
         }else if(gameFailed)
         {
+            survivarSaver.ResetCount();
             objectPoolManager.closeObjects();
             ResetPosition();
             tileOffset = tileStep;
@@ -98,6 +102,7 @@ public class StageManager : MonoSingleton<StageManager>
             boatController.RestartTimer();
             CreatePath();
         }else if(gameFinished){
+            survivarSaver.ResetCount();
             LevelUp();
             objectPoolManager.closeObjects();
             ResetPosition();
@@ -125,6 +130,7 @@ public class StageManager : MonoSingleton<StageManager>
         ropeObject.transform.position = Vector3.zero;
         ropeObject.SetActive(true);
         cameraObject.transform.position = Vector3.zero;
+
     }
 
     private void CreatePath()

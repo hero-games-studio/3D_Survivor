@@ -21,6 +21,7 @@ public class BoatDestroyer : MonoBehaviour
     }
     void OnCollisionEnter(Collision other) {
         if(other.gameObject == boat){
+            Survivor.isLost = true;
             boatController.enabled = false;
             hook.transform.SetParent(null);
             boatRigidbody.useGravity = true;

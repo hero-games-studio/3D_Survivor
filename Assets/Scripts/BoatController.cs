@@ -82,7 +82,6 @@ public class BoatController : MonoBehaviour
 
     void IsBoatMoving(){
         velocityZ = Mathf.RoundToInt(boatRigidBody.velocity.z);
-        print(velocityZ);
         if(velocityZ < 3 && !timerStarted){
             timerStarted = true;
             StartCoroutine(Timer());
@@ -93,13 +92,11 @@ public class BoatController : MonoBehaviour
 
     }
     public void RestartTimer(){
-        print("stopped");
         timerStarted = false;
         StopCoroutine(Timer());
     }
 
     IEnumerator Timer(){
-        print("Timer Started");
         yield return new WaitForSeconds(3);
         if(timerStarted){
             Vector3 offset = transform.position + new Vector3(0,10,0);

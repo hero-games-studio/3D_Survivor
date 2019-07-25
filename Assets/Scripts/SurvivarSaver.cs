@@ -26,6 +26,9 @@ public class SurvivarSaver : MonoBehaviour
         }
         
     }
+    public void ResetCount(){
+        savedSurvivors = 0;
+    }
 
    
 }

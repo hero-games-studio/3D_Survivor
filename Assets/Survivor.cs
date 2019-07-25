@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Survivor : MonoBehaviour
 {
+    [SerializeField]
     Vector3 firstPos;
     GameObject parent;
     public static bool isFinished = false;
@@ -13,6 +14,7 @@ public class Survivor : MonoBehaviour
     {
         firstPos = transform.localPosition;
         parent = transform.parent.gameObject;
+        print(parent);
         isFinished=false;
     }
 
@@ -21,8 +23,8 @@ public class Survivor : MonoBehaviour
     {
         if (isFinished || isLost)
         {
-            transform.position = firstPos;
             transform.SetParent(parent.transform);
+            transform.localPosition = firstPos;
             Invoke("setIsFinishedFalse", .5f);
         }
     }

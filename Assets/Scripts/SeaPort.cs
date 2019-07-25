@@ -26,6 +26,7 @@ public class SeaPort : MonoBehaviour
     }
     void OnTriggerEnter(Collider other) {
        if(other.transform.parent.gameObject == boat){
+            Survivor.isFinished = true;
             boatController.enabled = false;
             boatRigidbody.drag = 1f;
             boatRigidbody.angularDrag = 5f;
