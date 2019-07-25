@@ -90,7 +90,7 @@ public class StageManager : MonoSingleton<StageManager>
             objectPoolManager.closeObjects();
             ResetPosition();
             tileOffset = tileStep;
-            Survivor.isFinished = true;
+            Survivor.isLost = true;
             uiManager.SetOverLevelText("");
             uiManager.SetTapToText("Tap to Restart");
             SetGameStarted(true);

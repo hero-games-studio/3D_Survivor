@@ -19,7 +19,6 @@ public class BoatDestroyer : MonoBehaviour
         stageManager = StageManager.Instance;
         uiManager = UIManager.Instance;
     }
-    
     void OnCollisionEnter(Collision other) {
         if(other.gameObject == boat){
             boatController.enabled = false;

@@ -7,6 +7,7 @@ public class Survivor : MonoBehaviour
     Vector3 firstPos;
     GameObject parent;
     public static bool isFinished = false;
+    public static bool isLost = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,7 @@ public class Survivor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isFinished)
+        if (isFinished || isLost)
         {
             transform.position = firstPos;
             transform.SetParent(parent.transform);
@@ -29,5 +30,6 @@ public class Survivor : MonoBehaviour
     void setIsFinishedFalse()
     {
         isFinished = false;
+        isLost = false;
     }
 }
