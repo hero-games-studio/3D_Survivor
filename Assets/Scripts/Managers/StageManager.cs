@@ -20,6 +20,8 @@ public class StageManager : MonoSingleton<StageManager>
     [SerializeField]
     SurvivarSaver survivarSaver;
     [SerializeField]
+    WaterRePlacer waterRePlacer;
+    [SerializeField]
     bool gameStarted = true;
     [SerializeField]
     bool gameFailed = false;
@@ -83,11 +85,11 @@ public class StageManager : MonoSingleton<StageManager>
         {
             survivarSaver.ResetCount();
             boatController.enabled = true;
-            print("asf");
             boatController.SetKinematic(false);
             uiManager.SetInGamePanelActive(true);
             uiManager.SetTapToText("Tap to Start");
             gameStarted = false;
+            waterRePlacer.ResetPosition();
         }else if(gameFailed)
         {
             survivarSaver.ResetCount();
@@ -100,6 +102,7 @@ public class StageManager : MonoSingleton<StageManager>
             SetGameStarted(true);
             whaleObject.SetActive(false);
             boatController.RestartTimer();
+            waterRePlacer.ResetPosition();
             CreatePath();
         }else if(gameFinished){
             survivarSaver.ResetCount();
@@ -113,6 +116,7 @@ public class StageManager : MonoSingleton<StageManager>
             SetGameStarted(true);
             whaleObject.SetActive(false);
             boatController.RestartTimer();
+            waterRePlacer.ResetPosition();
             CreatePath();
         }
         
@@ -125,13 +129,14 @@ public class StageManager : MonoSingleton<StageManager>
         boatObject.transform.forward = Vector3.zero;
         hookObject.transform.position = Vector3.zero;
         hookObject.transform.eulerAngles = Vector3.zero;
-        hookObject.transform.SetParent(boatObject.transform);
         ropeObject.SetActive(false);
         ropeObject.transform.position = Vector3.zero;
         ropeObject.SetActive(true);
         cameraObject.transform.position = Vector3.zero;
+        hookObject.transform.SetParent(boatObject.transform);
 
     }
+ 
 
     private void CreatePath()
     {

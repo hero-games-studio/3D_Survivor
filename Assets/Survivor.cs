@@ -14,7 +14,6 @@ public class Survivor : MonoBehaviour
     {
         firstPos = transform.localPosition;
         parent = transform.parent.gameObject;
-        print(parent);
         isFinished=false;
     }
 
