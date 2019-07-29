@@ -108,6 +108,16 @@ PrefabInstance:
       propertyPath: offset
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 6274958533565605767, guid: 56c751dd72aa7b14783d668e15145260,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6274958533565605764, guid: 56c751dd72aa7b14783d668e15145260,
+        type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 21ca66efbe236f147ba48fdc4dc5b7e9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56c751dd72aa7b14783d668e15145260, type: 3}
 --- !u!4 &7870498711294304837 stripped

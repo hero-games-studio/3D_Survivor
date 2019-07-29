@@ -132,6 +132,11 @@ PrefabInstance:
       propertyPath: offset
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 6074887231925987524, guid: 7846eae8bdcc6a641b16022d934fc415,
+        type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 21ca66efbe236f147ba48fdc4dc5b7e9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7846eae8bdcc6a641b16022d934fc415, type: 3}
 --- !u!4 &7751949170388365672 stripped

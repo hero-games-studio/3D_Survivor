@@ -12,7 +12,9 @@ public class Survivor : MonoBehaviour
     private GameObject boat;
     private Vector3 boatPos;
     [SerializeField]
-    private GameObject particle;
+    private GameObject HelpObj;
+    [SerializeField]
+    private GameObject SmileyObj;
     [SerializeField]
     private float offset = 10f;
     private float distanceToBoat;
@@ -37,7 +39,7 @@ public class Survivor : MonoBehaviour
         if(distanceToBoat < offset && boat.transform.position.z < transform.position.z && calledForHelp == false && !pickedUp){
             print(distanceToBoat);
             print("Help me!");
-            particle.SetActive(true);
+            HelpObj.SetActive(true);
             calledForHelp = true;
         }
         if(boat.transform.position.z > transform.position.z && showedYourSadness == false){

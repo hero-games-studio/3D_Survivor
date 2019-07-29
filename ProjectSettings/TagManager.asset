@@ -9,6 +9,7 @@ TagManager:
   - saved
   - endOfScene
   - boat
+  - hook
   layers:
   - Default
   - TransparentFX

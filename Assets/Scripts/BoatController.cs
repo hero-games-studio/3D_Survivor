@@ -15,7 +15,7 @@ public class BoatController : MonoBehaviour
     [SerializeField]
     private GameObject whalePrefab;
     private int velocityZ;
-
+    private IEnumerator TimerVariable;
 
 
     private Vector3 targetPosition;
@@ -27,6 +27,10 @@ public class BoatController : MonoBehaviour
  
     void Awake(){
         uiManager = UIManager.Instance;
+    }
+
+    void Start(){
+        TimerVariable = Timer();
     }
     void Update() {
         uiManager.SetCurrentPosition(transform.position.z);
@@ -83,8 +87,9 @@ public class BoatController : MonoBehaviour
     void IsBoatMoving(){
         velocityZ = Mathf.RoundToInt(boatRigidBody.velocity.z);
         if(velocityZ < 4 && !timerStarted){
-            StopCoroutine(Timer());
-            StartCoroutine(Timer());
+            StopCoroutine(TimerVariable);
+            TimerVariable = Timer();
+            StartCoroutine(TimerVariable);
             timerStarted = true;
         }
         if(velocityZ > 4 && timerStarted){
@@ -94,7 +99,7 @@ public class BoatController : MonoBehaviour
     }
     public void RestartTimer(){
         timerStarted = false;
-        StopCoroutine(Timer());
+        StopCoroutine(TimerVariable);
     }
 
     IEnumerator Timer(){

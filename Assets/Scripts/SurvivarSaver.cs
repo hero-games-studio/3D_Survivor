@@ -6,6 +6,8 @@ public class SurvivarSaver : MonoBehaviour
 {
     [SerializeField]
     private GameObject ringPivot;
+    [SerializeField]
+    private GameObject smileyObject;
     private int savedSurvivors = 0;
     private float radiusMultiplier = 0;
     private int cycle = 6;
@@ -13,9 +15,11 @@ public class SurvivarSaver : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.transform.parent != null){
-
             if(other.transform.parent.gameObject.tag == "survivor"){
                 other.transform.parent.gameObject.GetComponent<Survivor>().PickUp();
+                if(smileyObject.gameObject.activeInHierarchy == false){
+                    smileyObject.SetActive(true);
+                }
                 savedSurvivors++;
                 other.transform.parent.transform.SetParent(ringPivot.transform);
                 //print("Multipier: " + radiusMultiplier + "| saved: " + savedSurvivors);
@@ -36,6 +40,5 @@ public class SurvivarSaver : MonoBehaviour
         radiusMultiplier = 0;
         counter = 1;
     }
-
    
 }
