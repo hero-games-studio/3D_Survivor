@@ -10,19 +10,15 @@ public class SurvivarSaver : MonoBehaviour
     private float radiusMultiplier = 0;
     private int cycle = 6;
     private int counter = 1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other) {
         if(other.transform.parent != null){
 
             if(other.transform.parent.gameObject.tag == "survivor"){
+                other.transform.parent.gameObject.GetComponent<Survivor>().PickUp();
                 savedSurvivors++;
                 other.transform.parent.transform.SetParent(ringPivot.transform);
-                print("Multipier: " + radiusMultiplier + "| saved: " + savedSurvivors);
+                //print("Multipier: " + radiusMultiplier + "| saved: " + savedSurvivors);
                 other.transform.parent.transform.localPosition = new Vector3(0,0,0);
                 other.transform.localPosition += new Vector3(0,0,radiusMultiplier);
                 other.transform.parent.transform.localEulerAngles = new Vector3(90 - (savedSurvivors-1)*60,90,90);

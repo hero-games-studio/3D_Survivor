@@ -47,6 +47,7 @@ public class StageManager : MonoSingleton<StageManager>
         SetGameStarted(true);
         SetGameFailed(false);
         SetGameFinished(false);
+        boatController.SetKinematic(true);
         CreatePath();
         uiManager.SetInGamePanelActive(false);
         uiManager.SetTapToText("Tap to Start");

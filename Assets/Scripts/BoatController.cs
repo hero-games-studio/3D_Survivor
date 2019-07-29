@@ -82,11 +82,12 @@ public class BoatController : MonoBehaviour
 
     void IsBoatMoving(){
         velocityZ = Mathf.RoundToInt(boatRigidBody.velocity.z);
-        if(velocityZ < 3 && !timerStarted){
-            timerStarted = true;
+        if(velocityZ < 4 && !timerStarted){
+            StopCoroutine(Timer());
             StartCoroutine(Timer());
+            timerStarted = true;
         }
-        if(velocityZ > 3 && timerStarted){
+        if(velocityZ > 4 && timerStarted){
             RestartTimer();
         }
 
@@ -98,10 +99,11 @@ public class BoatController : MonoBehaviour
 
     IEnumerator Timer(){
         yield return new WaitForSeconds(3);
-        if(timerStarted){
+        if(timerStarted && velocityZ < 4){
             Vector3 offset = transform.position + new Vector3(0,10,0);
             whalePrefab.SetActive(true);
             whalePrefab.transform.position = offset;
+            whalePrefab.GetComponent<Rigidbody>().velocity = new Vector3(0,-10,0);
             whalePrefab.transform.localEulerAngles = new Vector3(-100,-90,0);
         }
     }
