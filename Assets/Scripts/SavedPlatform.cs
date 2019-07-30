@@ -30,7 +30,6 @@ public class SavedPlatform : MonoBehaviour
             for(int j = 0; j < maxCountForLayer; j++){
                 yield return new WaitForSeconds(0.1f);
                 if(pivotTimer.transform.childCount > 1 && pivotTimer.transform.GetChild(1).tag == "saved"){
-                    print("platform");
                     GameObject newObj = pivotTimer.transform.GetChild(1).gameObject;
                     newObj.transform.parent = gameObject.transform;
                     newObj.transform.localPosition = new Vector3(offsetX * j, 1 , offsetY * i + 0.5f);

@@ -91,9 +91,16 @@ public class StageManager : MonoSingleton<StageManager>
             uiManager.SetInGamePanelActive(true);
             uiManager.SetTapToText("Tap to Start");
             gameStarted = false;
+            Survivor.isFinished = false;
+            Survivor.clickedToContinue = false;
             waterRePlacer.ResetPosition();
         }else if(gameFailed)
         {
+            savedSurvivors = GameObject.FindGameObjectsWithTag("saved");
+            foreach (GameObject saved in savedSurvivors)
+            {
+                saved.GetComponent<Survivor>().OnGameFinish();
+            }
             survivarSaver.ResetCount();
             objectPoolManager.closeObjects();
             ResetPosition();
@@ -106,14 +113,13 @@ public class StageManager : MonoSingleton<StageManager>
             boatController.RestartTimer();
             waterRePlacer.ResetPosition();
             CreatePath();
-            if (savedSurvivors == null){
-                savedSurvivors = GameObject.FindGameObjectsWithTag("saved");
-            }
+        }else if(gameFinished){
+            
+            savedSurvivors = GameObject.FindGameObjectsWithTag("saved");
             foreach (GameObject saved in savedSurvivors)
             {
                 saved.GetComponent<Survivor>().OnGameFinish();
             }
-        }else if(gameFinished){
 
 
             survivarSaver.ResetCount();
@@ -129,13 +135,6 @@ public class StageManager : MonoSingleton<StageManager>
             boatController.RestartTimer();
             waterRePlacer.ResetPosition();
             CreatePath();
-            if (savedSurvivors == null){
-                savedSurvivors = GameObject.FindGameObjectsWithTag("saved");
-            }
-            foreach (GameObject saved in savedSurvivors)
-            {
-                saved.GetComponent<Survivor>().OnGameFinish();
-            }
         }
         
     }
@@ -202,6 +201,9 @@ public class StageManager : MonoSingleton<StageManager>
     }
     public void SetGameFinished(bool gameFinished){
         this.gameFinished = gameFinished;
+    }
+    public void SetClickToContinue(bool click){
+        Survivor.clickedToContinue = click;
     }
 
     #endregion

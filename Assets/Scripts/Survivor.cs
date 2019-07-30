@@ -6,9 +6,12 @@ public class Survivor : MonoBehaviour
 {
     [SerializeField]
     Vector3 firstPos;
+    [SerializeField]
     GameObject parent;
     public static bool isFinished = false;
     public static bool isLost = false;
+    public static bool clickedToContinue = false;
+    public bool isFinishedApplied = false;
     private GameObject boat;
     private Vector3 boatPos;
     [SerializeField]
@@ -34,7 +37,7 @@ public class Survivor : MonoBehaviour
         parent = transform.parent.gameObject;
         isFinished=false;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -58,12 +61,18 @@ public class Survivor : MonoBehaviour
             transform.localPosition = firstPos;
             Invoke("setIsFinishedFalse", .5f);
         }
+
+        if(isFinished && !isFinishedApplied && !clickedToContinue){
+            OnGameFinish();
+        }
+
     }
     public void OnGameFinish(){
             transform.SetParent(parent.transform);
             transform.localPosition = firstPos;
             Invoke("setIsFinishedFalse", .5f);
-            transform.tag = "survivor";
+            transform.gameObject.tag = "survivor";
+            isFinishedApplied = true;
     }
 
     void setIsFinishedFalse()
