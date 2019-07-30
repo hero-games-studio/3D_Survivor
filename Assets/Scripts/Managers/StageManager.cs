@@ -27,6 +27,7 @@ public class StageManager : MonoSingleton<StageManager>
     bool gameFailed = false;
     [SerializeField]
     bool gameFinished = false;
+    private GameObject[] savedSurvivors;
 
 
     [SerializeField]
@@ -105,7 +106,16 @@ public class StageManager : MonoSingleton<StageManager>
             boatController.RestartTimer();
             waterRePlacer.ResetPosition();
             CreatePath();
+            if (savedSurvivors == null){
+                savedSurvivors = GameObject.FindGameObjectsWithTag("saved");
+            }
+            foreach (GameObject saved in savedSurvivors)
+            {
+                saved.GetComponent<Survivor>().OnGameFinish();
+            }
         }else if(gameFinished){
+
+
             survivarSaver.ResetCount();
             LevelUp();
             objectPoolManager.closeObjects();
@@ -119,6 +129,13 @@ public class StageManager : MonoSingleton<StageManager>
             boatController.RestartTimer();
             waterRePlacer.ResetPosition();
             CreatePath();
+            if (savedSurvivors == null){
+                savedSurvivors = GameObject.FindGameObjectsWithTag("saved");
+            }
+            foreach (GameObject saved in savedSurvivors)
+            {
+                saved.GetComponent<Survivor>().OnGameFinish();
+            }
         }
         
     }
@@ -135,7 +152,6 @@ public class StageManager : MonoSingleton<StageManager>
         ropeObject.SetActive(true);
         cameraObject.transform.position = Vector3.zero;
         hookObject.transform.SetParent(boatObject.transform);
-
     }
  
 

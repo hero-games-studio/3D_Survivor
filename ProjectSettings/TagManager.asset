@@ -10,6 +10,7 @@ TagManager:
   - endOfScene
   - boat
   - hook
+  - platform
   layers:
   - Default
   - TransparentFX

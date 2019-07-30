@@ -21,7 +21,12 @@ public class Survivor : MonoBehaviour
     private bool calledForHelp = false;
     private bool showedYourSadness = false;
     private bool pickedUp = false;
+    StageManager stageManager;
     // Start is called before the first frame update
+
+    void Awake(){
+        stageManager = StageManager.Instance;
+    }
     void Start()
     {
         boat = GameObject.FindGameObjectWithTag("boat");
@@ -36,7 +41,7 @@ public class Survivor : MonoBehaviour
         boatPos = boat.transform.position;
         distanceToBoat = Vector3.Distance(boatPos,transform.position);
 
-        if(distanceToBoat < offset && boat.transform.position.z < transform.position.z && calledForHelp == false && !pickedUp){
+        if(distanceToBoat < offset && boat.transform.position.z < transform.position.z && !calledForHelp && !pickedUp && !isFinished){
             print(distanceToBoat);
             print("Help me!");
             HelpObj.SetActive(true);
@@ -47,12 +52,18 @@ public class Survivor : MonoBehaviour
             showedYourSadness = true;
         }
 
-        if (isFinished || isLost)
+        if (isLost)
         {
             transform.SetParent(parent.transform);
             transform.localPosition = firstPos;
             Invoke("setIsFinishedFalse", .5f);
         }
+    }
+    public void OnGameFinish(){
+            transform.SetParent(parent.transform);
+            transform.localPosition = firstPos;
+            Invoke("setIsFinishedFalse", .5f);
+            transform.tag = "survivor";
     }
 
     void setIsFinishedFalse()

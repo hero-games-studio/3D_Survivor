@@ -40,5 +40,13 @@ public class SurvivarSaver : MonoBehaviour
         radiusMultiplier = 0;
         counter = 1;
     }
+
+    public int GetCountSavedSurvivors(){
+        return savedSurvivors;
+    }
+
+    public GameObject GetRingPivotObject(){
+        return ringPivot;
+    }
    
 }

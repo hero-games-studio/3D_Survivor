@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2322915811821636330}
   - component: {fileID: 2322915811821636331}
   m_Layer: 0
-  m_Name: Smiley
+  m_Name: Smiley 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ Animation:
   m_GameObject: {fileID: 2322915811821636328}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: be82d20d4da16894196a2197784a63f7, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
   - {fileID: 7400000, guid: 21ca66efbe236f147ba48fdc4dc5b7e9, type: 2}
   m_WrapMode: 0

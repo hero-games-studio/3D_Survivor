@@ -13,6 +13,8 @@ public class SeaPort : MonoBehaviour
     [SerializeField]
     UIManager uiManager;
     StageManager stageManager;
+    SavedPlatform savedPlatform;
+    SurvivarSaver survivarSaver;
 
     void Awake() {
         uiManager = UIManager.Instance;  
@@ -23,6 +25,8 @@ public class SeaPort : MonoBehaviour
         boat = GameObject.FindGameObjectWithTag("boat");
         boatRigidbody = boat.GetComponent<Rigidbody>();
         boatController =  boat.GetComponent<BoatController>();
+        savedPlatform = GameObject.FindGameObjectWithTag("platform").GetComponent<SavedPlatform>();
+        survivarSaver = GameObject.FindGameObjectWithTag("boat").GetComponent<SurvivarSaver>();
     }
     void OnTriggerEnter(Collider other) {
        if(other.transform.parent.gameObject == boat){
@@ -35,6 +39,7 @@ public class SeaPort : MonoBehaviour
             stageManager.SetGameStarted(false);
             stageManager.SetGameFailed(false);
             stageManager.SetGameFinished(true);
+            savedPlatform.GetSavedSurvivorsToPlatform(survivarSaver.GetCountSavedSurvivors(),survivarSaver.GetRingPivotObject());
         }
     }
 }
