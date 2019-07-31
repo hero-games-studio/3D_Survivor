@@ -156,10 +156,10 @@ public class StageManager : MonoSingleton<StageManager>
 
     private void CreatePath()
     {
-        int tileCount = currentLevel * 5;
+        int tileCount = Random.Range(7,14);
         for (int i = 0; i < tileCount; i++)
         {
-            int randType = Random.Range(0,6);
+            int randType = Random.Range(0,11);
             objectPoolManager.spawnObject(randType,tileOffset);
             tileOffset += tileStep;
         }

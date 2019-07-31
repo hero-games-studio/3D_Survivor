@@ -180,7 +180,7 @@ PrefabInstance:
     - target: {fileID: 3207404830912621651, guid: 4c82cfde86da34d46939ab2a85801140,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3207404830912621651, guid: 4c82cfde86da34d46939ab2a85801140,
         type: 3}
@@ -853,8 +853,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214420019}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.2, z: 32.9}
-  m_LocalScale: {x: 0.9, y: 5.1800017, z: 1}
+  m_LocalPosition: {x: 0, y: 0.2, z: 39.3}
+  m_LocalScale: {x: 0.9, y: 6.19, z: 1}
   m_Children: []
   m_Father: {fileID: 1554177695}
   m_RootOrder: 1
@@ -1521,7 +1521,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 2500
+    maxNumParticles: 5000
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -7649,7 +7649,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &776842037
 BoxCollider:
@@ -8445,7 +8445,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 44
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -8738,6 +8738,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 87613737597053c44acba52ed2ae7336,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 87613737597053c44acba52ed2ae7336,
         type: 3}
@@ -10764,11 +10769,31 @@ MonoBehaviour:
       type: 3}
   - objectType: 4
     length: 10
-    objectPrefab: {fileID: 7325695284781003451, guid: dcbf8784501b33442802c390399a8890,
+    objectPrefab: {fileID: 5645978351926449180, guid: cd6a6b76e3e1a7d49a53d5758360321a,
       type: 3}
   - objectType: 5
     length: 10
-    objectPrefab: {fileID: 7111627094110226304, guid: a35d7d33e839d2147962098c488c6a67,
+    objectPrefab: {fileID: 2614010747643196995, guid: cb34eb95144782c479a0e689a25595a2,
+      type: 3}
+  - objectType: 6
+    length: 10
+    objectPrefab: {fileID: 721182922503095125, guid: 5e9a504568dc9674386769f04003ee25,
+      type: 3}
+  - objectType: 7
+    length: 10
+    objectPrefab: {fileID: 5132941895207151138, guid: b644a511b5ec61f439bb50ba54e0714b,
+      type: 3}
+  - objectType: 8
+    length: 10
+    objectPrefab: {fileID: 2849415106869324476, guid: c736b7b78b84c0245b45ec4439759433,
+      type: 3}
+  - objectType: 9
+    length: 10
+    objectPrefab: {fileID: 3880570671562525036, guid: deab860a5cfd232458d51d769e287d87,
+      type: 3}
+  - objectType: 10
+    length: 10
+    objectPrefab: {fileID: 7536777271188616982, guid: 3d66185b48e2ae345a9aacae14a3de34,
       type: 3}
   endObjectPrefab: {fileID: 7706748560976091785, guid: 488bae7be43e00849b2c1cbfe7eb71f7,
     type: 3}
@@ -11211,6 +11236,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 87613737597053c44acba52ed2ae7336,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 87613737597053c44acba52ed2ae7336,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11600,7 +11630,7 @@ Transform:
   m_LocalScale: {x: 4, y: 1, z: 200}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1931110778
 PrefabInstance:

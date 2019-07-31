@@ -10,5 +10,6 @@ public class CameraFollower : MonoBehaviour
     }
     void Update() {
         transform.LookAt(mainCamera.transform.position, Vector3.up);
+        transform.eulerAngles += new Vector3(0,180,0);
     }
 }
