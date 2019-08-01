@@ -12,6 +12,9 @@ public class SurvivarSaver : MonoBehaviour
     private float radiusMultiplier = 0;
     private int cycle = 6;
     private int counter = 1;
+    void Update(){
+
+    }
 
     private void OnTriggerEnter(Collider other) {
         if(other.transform.parent != null){

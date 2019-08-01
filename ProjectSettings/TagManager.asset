@@ -11,6 +11,7 @@ TagManager:
   - boat
   - hook
   - platform
+  - holoRing
   layers:
   - Default
   - TransparentFX

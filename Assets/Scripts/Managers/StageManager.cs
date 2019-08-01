@@ -18,7 +18,7 @@ public class StageManager : MonoSingleton<StageManager>
     [SerializeField]
     BoatController boatController;
     [SerializeField]
-    SurvivarSaver survivarSaver;
+    SurvivarSaverV2 survivarSaverV2;
     [SerializeField]
     WaterRePlacer waterRePlacer;
     [SerializeField]
@@ -31,7 +31,7 @@ public class StageManager : MonoSingleton<StageManager>
 
 
     [SerializeField]
-    GameObject boatObject, hookObject, ropeObject, cameraObject, whaleObject;
+    GameObject boatObject, hookObject, cameraObject, whaleObject;
 
     #endregion
     #region Functions
@@ -85,7 +85,7 @@ public class StageManager : MonoSingleton<StageManager>
     {
         if(gameStarted)
         {
-            survivarSaver.ResetCount();
+            survivarSaverV2.ResetCount();
             boatController.enabled = true;
             boatController.SetKinematic(false);
             uiManager.SetInGamePanelActive(true);
@@ -101,7 +101,7 @@ public class StageManager : MonoSingleton<StageManager>
             {
                 saved.GetComponent<Survivor>().OnGameFinish();
             }
-            survivarSaver.ResetCount();
+            survivarSaverV2.ResetCount();
             objectPoolManager.closeObjects();
             ResetPosition();
             tileOffset = tileStep;
@@ -122,7 +122,7 @@ public class StageManager : MonoSingleton<StageManager>
             }
 
 
-            survivarSaver.ResetCount();
+            survivarSaverV2.ResetCount();
             LevelUp();
             objectPoolManager.closeObjects();
             ResetPosition();
@@ -146,9 +146,6 @@ public class StageManager : MonoSingleton<StageManager>
         boatObject.transform.forward = Vector3.zero;
         hookObject.transform.position = Vector3.zero;
         hookObject.transform.eulerAngles = Vector3.zero;
-        ropeObject.SetActive(false);
-        ropeObject.transform.position = Vector3.zero;
-        ropeObject.SetActive(true);
         cameraObject.transform.position = Vector3.zero;
         hookObject.transform.SetParent(boatObject.transform);
     }

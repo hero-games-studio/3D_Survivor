@@ -76,6 +76,7 @@ MonoBehaviour:
   firstPos: {x: 0, y: 0, z: 0}
   parent: {fileID: 0}
   isFinishedApplied: 0
+  ringThrown: 0
   HelpObj: {fileID: 1901747426261476060}
   SmileyObj: {fileID: 8523372279109515923}
   offset: 20
@@ -161,41 +162,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: -1232451692195220358, guid: 328b6e52ef9758c4bb20146fb5365cca,
+    - target: {fileID: 7230749741371998272, guid: 328b6e52ef9758c4bb20146fb5365cca,
         type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.013454629
-      objectReference: {fileID: 0}
-    - target: {fileID: -1232451692195220358, guid: 328b6e52ef9758c4bb20146fb5365cca,
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dda63d8335e70ac43aec3813d8f5452e, type: 2}
+    - target: {fileID: 3828483078590411636, guid: 328b6e52ef9758c4bb20146fb5365cca,
         type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.00015875242
-      objectReference: {fileID: 0}
-    - target: {fileID: -1232451692195220358, guid: 328b6e52ef9758c4bb20146fb5365cca,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.6086122
-      objectReference: {fileID: 0}
-    - target: {fileID: -1232451692195220358, guid: 328b6e52ef9758c4bb20146fb5365cca,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.924
-      objectReference: {fileID: 0}
-    - target: {fileID: -1232451692195220358, guid: 328b6e52ef9758c4bb20146fb5365cca,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7933538
-      objectReference: {fileID: 0}
-    - target: {fileID: -1232451692195220358, guid: 328b6e52ef9758c4bb20146fb5365cca,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 1.2340001
-      objectReference: {fileID: 0}
-    - target: {fileID: -1232451692195220358, guid: 328b6e52ef9758c4bb20146fb5365cca,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -74.996
-      objectReference: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dda63d8335e70ac43aec3813d8f5452e, type: 2}
     - target: {fileID: 7402050280959761381, guid: 328b6e52ef9758c4bb20146fb5365cca,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -230,6 +206,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 89.997
+      objectReference: {fileID: 0}
+    - target: {fileID: -1232451692195220358, guid: 328b6e52ef9758c4bb20146fb5365cca,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.013454629
+      objectReference: {fileID: 0}
+    - target: {fileID: -1232451692195220358, guid: 328b6e52ef9758c4bb20146fb5365cca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.00015875242
+      objectReference: {fileID: 0}
+    - target: {fileID: -1232451692195220358, guid: 328b6e52ef9758c4bb20146fb5365cca,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.6086122
+      objectReference: {fileID: 0}
+    - target: {fileID: -1232451692195220358, guid: 328b6e52ef9758c4bb20146fb5365cca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.924
+      objectReference: {fileID: 0}
+    - target: {fileID: -1232451692195220358, guid: 328b6e52ef9758c4bb20146fb5365cca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7933538
+      objectReference: {fileID: 0}
+    - target: {fileID: -1232451692195220358, guid: 328b6e52ef9758c4bb20146fb5365cca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 1.2340001
+      objectReference: {fileID: 0}
+    - target: {fileID: -1232451692195220358, guid: 328b6e52ef9758c4bb20146fb5365cca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -74.996
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 328b6e52ef9758c4bb20146fb5365cca, type: 3}

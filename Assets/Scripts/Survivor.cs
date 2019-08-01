@@ -12,6 +12,7 @@ public class Survivor : MonoBehaviour
     public static bool isLost = false;
     public static bool clickedToContinue = false;
     public bool isFinishedApplied = false;
+    public bool ringThrown = false;
     private GameObject boat;
     private Vector3 boatPos;
     [SerializeField]
@@ -66,6 +67,9 @@ public class Survivor : MonoBehaviour
             OnGameFinish();
         }
 
+    }
+    public void SetNewParent(Transform parent){
+        transform.SetParent(parent);
     }
     public void OnGameFinish(){
             transform.SetParent(parent.transform);
