@@ -12,6 +12,7 @@ TagManager:
   - hook
   - platform
   - holoRing
+  - offsetRing
   layers:
   - Default
   - TransparentFX

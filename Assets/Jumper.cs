@@ -38,6 +38,7 @@ public class Jumper : MonoBehaviour
         survivor.SetNewParent(transform);
         GetComponent<Jumper>().enabled = false;
         GetComponent<RingMovement>().enabled = true;
+        GetComponent<Animation>().enabled = false;
     }
     IEnumerator UpdatePos(){
         while(transform.position != lastPos){
